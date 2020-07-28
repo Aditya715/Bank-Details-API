@@ -1,1 +1,1 @@
-web:gunicorn bankIfsc.wsgi 
+web: gunicorn gettingstarted.wsgi --log-file -

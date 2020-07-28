@@ -1,22 +1,22 @@
 {
-    "name": "Bank Ifsc Details",
-    "description": "This repository is based on CRUD (Create, read, update, delete) operation on the bank details using Django Rest Framework ( RESTFUL API).",
-    "image": "heroku/python",
-    "repository": "https://github.com/Aditya715/Bank-Details-API",
-    "keywords": ["python", "django" ],
-    "addons": [ "heroku-postgresql" ],
-    "env": {
-      "SECRET_KEY": {
-        "description": "=0^(v1kqt+8k4t($e7hgnjvxkuptsu9ono7894tsx5k%s(k#b&",
-        "generator": "secret"
-      }
-    },
-    "environments": {
-      "test": {
-        "scripts": {
-          "test-setup": "python manage.py collectstatic --noinput",
-          "test": "python manage.py test"
-        }
+  "name": "Start on Heroku: Python",
+  "description": "A barebones Python app, which can easily be deployed to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://github.com/heroku/python-getting-started",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
+  },
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python manage.py collectstatic --noinput",
+        "test": "python manage.py test"
       }
     }
   }
+}
