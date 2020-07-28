@@ -11,7 +11,6 @@ def data_download(url, download_path, log_file):
         soup = bs(response.text, "lxml")
         all_table = soup.find_all("table", class_="tablebg")
         if len(all_table) != 2:
-            print("Error there.")
             return 0
         req_table = all_table[-1]
         all_banks = req_table.find_all("tr")
