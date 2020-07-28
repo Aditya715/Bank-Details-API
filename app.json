@@ -4,6 +4,7 @@
     "image": "heroku/python",
     "repository": "https://github.com/Aditya715/Bank-Details-API",
     "keywords": ["python", "django" ],
+    "addons": [ "heroku-postgresql" ],
     "env": {
       "SECRET_KEY": {
         "description": "=0^(v1kqt+8k4t($e7hgnjvxkuptsu9ono7894tsx5k%s(k#b&",
