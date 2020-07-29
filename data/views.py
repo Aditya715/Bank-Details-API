@@ -2,6 +2,7 @@
     Data -> View 
     For binding the urls with the backend. 
 """
+from django.views import View
 from django.core import serializers
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -14,7 +15,6 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -27,7 +27,8 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
- 
+
+
 class GetAllData(APIView):
     """
         This class will return all the data saved in the database.
@@ -145,3 +146,26 @@ class UpdateExisting(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         return Response(obj.values(), status= status.HTTP_200_OK)
+
+
+class IndexView(View):
+    message = """
+        <h1>API - for adding, updating and fetching IFSC Codes for banks registered in RBI</h1>
+        <h2>There are specific urls for each of the following operations: </h2>
+        <h4>1. Get all bank details -> https://bank-api-2403.herokuapp.com/ifsc/get</h4>
+        <h4>2. Create a new bank details -> https://bank-api-2403.herokuapp.com/ifsc/create</h4>
+        <h4>3. Update an existing one -> https://bank-api-2403.herokuapp.com/ifsc/update</h4>
+
+        <p>
+            <span style="color: red; font-weight: bold">Note : </span>
+            The responses are json response so for the best view use <a href="https://www.postman.com">Postman</a>
+            or <a href="https://linuxize.com/post/curl-rest-api/">curl request</a>
+        </p>
+
+        <p>Also, to create or update one you need to be authorized, you need to pass username and password
+        to get the operations done.<br> All of the above requests can be send using GET method. </p>
+
+        Source code : <a href="https://github.com/Aditya715/Bank-Details-API">Github</a>
+    """
+    def get(self, request):
+        return HttpResponse(self.message)

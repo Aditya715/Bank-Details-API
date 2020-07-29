@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import (
     datetime, 
     timedelta
@@ -67,7 +68,7 @@ def read_and_save(file_name, log_file):
                     bank_name = bank_name,
                     branch_address = row['ADDRESS']
                 ).save()
-                
+
         except KeyError as e:
             log_file.write(file_name)
             print(e)
@@ -75,6 +76,7 @@ def read_and_save(file_name, log_file):
             break
 
 def main_function():
+    print("[+]-----------Reading scripts")
     url = "https://www.rbi.org.in/Scripts/bs_viewcontent.aspx?Id=2009"
     download_path = os.path.join(
         os.getcwd(), 'IFSC Files'
@@ -100,11 +102,16 @@ def main_function():
     skip_log_file.close()
     
 def run():
-    now = datetime.today()
-    last_day = now.replace(day=now.day, hour=16, minute=0, second=0, microsecond=0) + timedelta(days=1)
-    delta_t = last_day - now
-
-    secs = delta_t.total_seconds()
-
-    t = Timer(secs, main_function)
-    t.start()
+    while True:
+        now = datetime.now()
+        if now.hour == 1 and now.minute <= 10:
+            main_function()
+            time.sleep(60*60)
+        else:
+            current_date = datetime.today().date()
+            next_date = str(current_date + timedelta(days=1))
+            run_time = datetime.strptime(next_date + " 01:00:00", '%Y-%m-%d %H:%M:%S')
+            current_time = datetime.now()
+            difference = run_time - current_time
+            sys.stdout.write("Time left to run scripts for data : " + str(difference) + "\r")
+            sys.stdout.flush()
