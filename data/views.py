@@ -126,7 +126,7 @@ class UpdateExisting(APIView):
         
         # if ifsc_code not available in the database.
         if not obj:
-            return Response("Data not available for this IFSC Code to get updated",
+            return Response({"error": "Data not available for this IFSC Code to get updated"},
                             status=status.HTTP_304_NOT_MODIFIED)
 
         # handling updation using **kwargs as we don't know which field user want to update.

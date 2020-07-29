@@ -1,5 +1,8 @@
 import os
-from datetime import datetime
+from datetime import (
+    datetime, 
+    timedelta
+)
 from threading import Timer
 from data.models import BankDetail
 import requests
@@ -46,13 +49,25 @@ def read_and_save(file_name, log_file):
                 bank_name = row['BANK NAME']
             else:
                 bank_name = row['BANK']
-
-            BankDetail(
-                ifsc_code = row['IFSC'],
-                branch_name = branch,
-                bank_name = bank_name,
-                branch_address = row['ADDRESS']
-            ).save()
+            
+            # checking if already there or not
+            obj = BankDetail.objects.filter(
+                ifsc_code=row['IFSC']
+            )
+            if obj:
+                obj.update(
+                    branch_name=branch,
+                    bank_name=bank_name,
+                    branch_address = row['ADDRESS']
+                )
+            else:
+                BankDetail(
+                    ifsc_code = row['IFSC'],
+                    branch_name = branch,
+                    bank_name = bank_name,
+                    branch_address = row['ADDRESS']
+                ).save()
+                
         except KeyError as e:
             log_file.write(file_name)
             print(e)
@@ -69,13 +84,13 @@ def main_function():
     print("log_file_created.")
 
     # this will clear the directory and make it fresh
-    # for root, dirs, files in os.walk(download_path):
-    #     if files:
-    #         for file in files:
-    #             os.remove(os.path.join(root, file))
+    for root, dirs, files in os.walk(download_path):
+        if files:
+            for file in files:
+                os.remove(os.path.join(root, file))
 
-    # bool_out = data_download(url, download_path, log_file)
-    bool_out = True
+    bool_out = data_download(url, download_path, log_file)
+    # bool_out = True
     log_file.close()
     if bool_out:
         list_of_files = list()
@@ -85,5 +100,11 @@ def main_function():
     skip_log_file.close()
     
 def run():
-    main_function()
-    
+    now = datetime.today()
+    last_day = now.replace(day=now.day, hour=16, minute=0, second=0, microsecond=0) + timedelta(days=1)
+    delta_t = last_day - now
+
+    secs = delta_t.total_seconds()
+
+    t = Timer(secs, main_function)
+    t.start()
