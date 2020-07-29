@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from threading import Timer
 from data.models import BankDetail
 import requests
 from bs4 import BeautifulSoup as bs
@@ -58,27 +59,32 @@ def read_and_save(file_name, log_file):
             print(f"Error while reading file { file_name.split(os.sep)[-1] }\nSkipping.")
             break
 
-def run():
+def main_function():
     url = "https://www.rbi.org.in/Scripts/bs_viewcontent.aspx?Id=2009"
-    download_path = os.path.join(
-        os.getcwd(), 'IFSC Files'
-    )
-    log_file = open("download_log.txt", "w")
-    skip_log_file = open("FileSkipped.txt", "w")
-    print("log_file_created.")
+        download_path = os.path.join(
+            os.getcwd(), 'IFSC Files'
+        )
+        log_file = open("download_log.txt", "w")
+        skip_log_file = open("FileSkipped.txt", "w")
+        print("log_file_created.")
 
-    if not os.path.exists(download_path):
+        # this will delete the directory if exists and create a fresh one
+        if os.path.exists(download_path):
+            shutil.rmtree(download_path, ignore_errors=False, onerror=None)
         os.makedirs(download_path)
-    
-    bool_out = data_download(url, download_path, log_file)
-    log_file.close()
-    # bool_out = True
-    start_time = datetime.now()
-    if bool_out:
-        list_of_files = list()
-        for root, dirs, files in os.walk(download_path):
-            for file in files:
-                read_and_save(os.path.join(root, file), skip_log_file)
-    skip_log_file.close()
-    print("Start time : {}".format(start_time))
-    print("End time : {}".format(datetime.now()))
+        
+        # bool_out = data_download(url, download_path, log_file)
+        log_file.close()
+        bool_out = True
+        start_time = datetime.now()
+        if bool_out:
+            list_of_files = list()
+            for root, dirs, files in os.walk(download_path):
+                for file in files:
+                    read_and_save(os.path.join(root, file), skip_log_file)
+        skip_log_file.close()
+        print("Start time : {}".format(start_time))
+        print("End time : {}".format(datetime.now()))
+
+def run():
+    main_function()
