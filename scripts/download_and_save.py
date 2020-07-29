@@ -69,10 +69,10 @@ def main_function():
     print("log_file_created.")
 
     # this will clear the directory and make it fresh
-    for root, dirs, files in os.walk(download_path):
-        if files:
-            for file in files:
-                os.remove(os.path.join(root, file))
+    # for root, dirs, files in os.walk(download_path):
+    #     if files:
+    #         for file in files:
+    #             os.remove(os.path.join(root, file))
 
     # bool_out = data_download(url, download_path, log_file)
     bool_out = True
