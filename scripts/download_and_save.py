@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 from pandas import ExcelFile
 
 def data_download(url, download_path, log_file):
+    print("Downloading files.....")
     response = requests.get(url)
     if response.status_code == 200:
         soup = bs(response.text, "lxml")
@@ -19,7 +20,7 @@ def data_download(url, download_path, log_file):
             print(get_href)
             try:
                 quick_response = requests.get(
-                    get_href, timeout=15, allow_redirects=True
+                    get_href, timeout=25, allow_redirects=True
                 )
                 file_name = os.path.join(
                     download_path, get_href.split("/")[-1]
@@ -62,15 +63,16 @@ def run():
     download_path = os.path.join(
         os.getcwd(), 'IFSC Files'
     )
-    # log_file = open("download_log.txt", "w")
+    log_file = open("download_log.txt", "w")
     skip_log_file = open("FileSkipped.txt", "w")
+    print("log_file_created.")
 
     if not os.path.exists(download_path):
         os.makedirs(download_path)
     
-    # bool_out = data_download(url, download_path, log_file)
-    # log_file.close()
-    bool_out = True
+    bool_out = data_download(url, download_path, log_file)
+    log_file.close()
+    # bool_out = True
     start_time = datetime.now()
     if bool_out:
         list_of_files = list()
