@@ -73,7 +73,8 @@ def main_function():
         shutil.rmtree(download_path, ignore_errors=False, onerror=None)
     os.makedirs(download_path)
     
-    bool_out = data_download(url, download_path, log_file)
+    # bool_out = data_download(url, download_path, log_file)
+    bool_out = True
     log_file.close()
     if bool_out:
         list_of_files = list()
