@@ -68,11 +68,12 @@ def main_function():
     skip_log_file = open("FileSkipped.txt", "w")
     print("log_file_created.")
 
-    # this will delete the directory if exists and create a fresh one
-    if os.path.exists(download_path):
-        shutil.rmtree(download_path, ignore_errors=False, onerror=None)
-    os.makedirs(download_path)
-    
+    # this will clear the directory and make it fresh
+    for root, dirs, files in os.walk(download_path):
+        if files:
+            for file in files:
+                os.remove(os.path.join(root, file))
+
     # bool_out = data_download(url, download_path, log_file)
     bool_out = True
     log_file.close()
