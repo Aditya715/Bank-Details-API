@@ -1,2 +1,2 @@
 web: gunicorn bankIfsc.wsgi --log-file -
-clock: python clock.py
+clock: python manage.py runscript download_and_save
