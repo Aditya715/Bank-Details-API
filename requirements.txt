@@ -2,6 +2,7 @@ django
 gunicorn
 django-extensions
 django-heroku
+apscheduler
 djangorestframework
 beautifulsoup4
 lxml
