@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "719b3f09-d57f-4f6d-9396-03a29cff54ff",
+		"name": "Bank Ifsc API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://bank-api-2403.herokuapp.com/ifsc/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bank-api-2403.herokuapp.com/ifsc/get",
+					"protocol": "https",
+					"host": [
+						"bank-api-2403",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ifsc",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://bank-api-2403.herokuapp.com/ifsc/create?ifsc_code=DEMO12090&bank_name=DEMO BANK&branch_name=DEMO NAGAR&branch_address=217/12, DEMO PARK",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "redhat@123#R",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bank-api-2403.herokuapp.com/ifsc/create?ifsc_code=DEMO12090&bank_name=DEMO BANK&branch_name=DEMO NAGAR&branch_address=217/12, DEMO PARK",
+					"protocol": "https",
+					"host": [
+						"bank-api-2403",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ifsc",
+						"create"
+					],
+					"query": [
+						{
+							"key": "ifsc_code",
+							"value": "DEMO12090"
+						},
+						{
+							"key": "bank_name",
+							"value": "DEMO BANK"
+						},
+						{
+							"key": "branch_name",
+							"value": "DEMO NAGAR"
+						},
+						{
+							"key": "branch_address",
+							"value": "217/12, DEMO PARK"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://bank-api-2403.herokuapp.com/ifsc/update",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "redhat@123#R",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bank-api-2403.herokuapp.com/ifsc/update",
+					"protocol": "https",
+					"host": [
+						"bank-api-2403",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ifsc",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://bank-api-2403.herokuapp.com/ifsc/update?ifsc_code=DEMO12090&bank_name=MY BANK&branch_name=SITAPUR",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "redhat@123#R",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bank-api-2403.herokuapp.com/ifsc/update?ifsc_code=DEMO12090&bank_name=MY BANK&branch_name=SITAPUR",
+					"protocol": "https",
+					"host": [
+						"bank-api-2403",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ifsc",
+						"update"
+					],
+					"query": [
+						{
+							"key": "ifsc_code",
+							"value": "DEMO12090"
+						},
+						{
+							"key": "bank_name",
+							"value": "MY BANK"
+						},
+						{
+							"key": "branch_name",
+							"value": "SITAPUR"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
