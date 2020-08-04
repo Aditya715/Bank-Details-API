@@ -152,9 +152,9 @@ class IndexView(View):
     message = """
         <h1>API - for adding, updating and fetching IFSC Codes for banks registered in RBI</h1>
         <h2>There are specific urls for each of the following operations: </h2>
-        <h4>1. Get all bank details -> https://bank-api-2403.herokuapp.com/ifsc/get</h4>
-        <h4>2. Create a new bank details -> https://bank-api-2403.herokuapp.com/ifsc/create</h4>
-        <h4>3. Update an existing one -> https://bank-api-2403.herokuapp.com/ifsc/update</h4>
+        <h4>1. Get all bank details -> <a href="https://bank-api-2403.herokuapp.com/ifsc/get">https://bank-api-2403.herokuapp.com/ifsc/get</a></h4>
+        <h4>2. Create a new bank details -><a href="https://bank-api-2403.herokuapp.com/ifsc/create">https://bank-api-2403.herokuapp.com/ifsc/create</a></h4>
+        <h4>3. Update an existing one -> <a href="https://bank-api-2403.herokuapp.com/ifsc/update">https://bank-api-2403.herokuapp.com/ifsc/update</a></h4>
 
         <p>
             <span style="color: red; font-weight: bold">Note : </span>
