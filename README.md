@@ -3,6 +3,8 @@ This repository is based on CRUD (Create, read, update, delete) operation on the
 
 This application will help you to get through the Django rest framework and Heroku.
 
+Currently, delete functionality is not added but hopefully you'll see it in couple of days.
+
 Heroku hosting files created in this repository is for windows but you can do it for linux and mac as well by following the simple steps from <a href="https://devcenter.heroku.com/articles/getting-started-with-python">here</a>
 
 To run this, you need to have python3.6 and pip installed, then you're good to go.
